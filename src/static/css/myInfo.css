@@ -1,0 +1,294 @@
+@charset "UTF-8";
+
+#myInfoWrapper{
+  font-size: 16px;
+}
+
+#myInfoBanner{
+  display: block;
+  width: 100%;
+  min-height: 680px;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0.9;
+}
+
+#myInfoUIWrapper{
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 115px 0 40px 0;
+}
+
+#myInfoUI{
+  box-sizing: border-box;
+  position: relative;
+  width: 850px;
+  height: 580px;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: rgba(0, 0, 0, 0.875);
+  padding: 40px;
+  border-radius: 20px;
+}
+
+#profileImageDiv{
+  box-sizing: border-box;
+  float: left;
+  position: relative;
+  width: 12.5em;
+  height: 12.5em;
+  border: 3.5px inset white;
+  margin-right: 20px;
+}
+
+#profileImage{
+  width: 100%;
+  height: 100%;
+}
+
+#openImagePopup{
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  background-image: url('../image/icon/profileImageUpdate.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+#changeImagePopup{
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 320px;
+  width: 400px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  color: black;
+  z-index: 5;
+  border-radius: 10px;
+}
+
+#closeImagePopup{
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 28px;
+  transition: color 0.25s;
+}
+
+#closeImagePopup:hover{
+  cursor: pointer;
+  color: red;
+}
+
+#popupBackground{
+  display: none;
+  position: fixed;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 4;
+}
+
+#previewImage{
+  display: block;
+  position: relative;
+  height: 200px;
+  width: 200px;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid gray;
+}
+
+#changeImagePopup label, #uploadProfileImage, #submitProfileImage{
+  cursor: pointer;
+  position: absolute;
+  bottom: 25px;
+  width: 80px;
+  height: 40px;
+  transform: translateX(-50%);
+  background-color: red;
+  font-size: 16px;
+  border-radius: 3px;
+}
+
+#changeImagePopup label p{
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  transform: translateY(-50%);
+}
+
+#changeImagePopup label, #uploadProfileImage{
+  left: 39%;
+}
+
+#submitProfileImage{
+  left: 61%;
+  border: 0;
+}
+
+#profileMyName, #profileMyEmail, #profileMyHistory, #profileMyComment{
+  height: 5em;
+  margin-bottom: 2.5em;
+}
+
+#profileMyHistory, #profileMyComment{
+  height: 40px;
+  margin-bottom: 30px;
+}
+
+#profileMyHistory a, #profileMyComment a{
+  text-decoration: none;
+  color: white;
+}
+
+#profileMyHistory p, #profileMyComment p{
+  margin-left: 20px;
+}
+
+.preventScroll{ /* body의 스크롤 방지 */
+  height:100%;
+  overflow:hidden !important;
+  touch-action:none;
+}
+
+@media all and (min-width: 860px) and (max-width: 1459px) {
+  #myInfoUI{
+    width: 765px;
+    height: 522px;
+  }
+}
+
+@media all and (min-width: 700px) and (max-width: 859px) {
+  #myInfoUI{
+    width: 96%;
+    height: 522px;
+  }
+}
+
+@media all and (min-width: 600px) and (max-width: 699px) {
+  #myInfoWrapper{
+    font-size: 14px;
+  }
+
+  #myInfoUI{
+    width: 96%;
+    height: 478px;
+    padding: 30px;
+  }
+}
+
+
+@media all and (max-width: 599px) {
+  #myInfoWrapper{
+    font-size: 13px;
+  }
+
+  #myInfoBanner{
+    height: 645px;
+    min-height: 645px;
+  }
+
+  #myInfoUI{
+    width: 98%;
+    height: 455px;
+    padding: 20px;
+  }
+}
+
+@media screen and (max-device-width: 480px){
+  #myInfoBanner {
+    min-height: calc(100vh - 175px);
+  }
+
+  #myInfoUI{
+    top: 50%;
+    width: 740px;
+    height: 1300px;
+    transform: translate(-50%, -50%);
+    padding: 60px;
+    border-radius: 35px;
+  }
+
+  #profileImageDiv{
+    float: unset;
+    width: 400px;
+    height: 400px;
+    margin: 0 110px 50px 110px;
+  }
+
+  #openImagePopup {
+    width: 100px;
+    height: 100px;
+  }
+
+  #profileMyName, #profileMyEmail{
+    height: unset;
+  }
+
+  #profileMyEmail{
+    margin-bottom: 4em;
+  }
+
+  #profileMyName h1, #profileMyEmail h1{
+    font-size: 45px;
+  }
+
+  #profileMyName h3, #profileMyEmail h3{
+    font-size: 38px;
+  }
+
+  #commentHistory h1, #watchHistory h1 {
+    font-size: 38px !important;
+  }
+
+  #historyWrapper p {
+    left: 93% !important;
+    font-size: 34px !important;
+  }
+
+  #changeImagePopup {
+    height: 660px;
+    width: 740px;
+    border-radius: 30px;
+  }
+
+  #previewImage {
+    height: 420px;
+    width: 420px;
+  }
+
+  #changeImagePopup label, #uploadProfileImage, #submitProfileImage {
+    bottom: 55px;
+    width: 175px;
+    height: 80px;
+    font-size: 34px;
+    border-radius: 13px;
+  }
+
+  #changeImagePopup label, #uploadProfileImage {
+    left: 37%;
+  }
+
+  #submitProfileImage {
+    left: 63%;
+    border: 0;
+  }
+
+  #closeImagePopup {
+    right: 24px;
+    font-size: 100px;
+  }
+}

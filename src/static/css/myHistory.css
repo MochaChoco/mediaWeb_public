@@ -1,0 +1,214 @@
+@charset "UTF-8";
+
+#historyWrapper h1{
+  cursor: pointer;
+}
+
+#historyWrapper p{
+  display: inline-block;
+  position: relative;
+  left: 100%;
+  transform: translateX(-100%);
+  font-size: 15px;
+}
+
+#commentHistory h1, #watchHistory h1{
+  padding-bottom: 10px;
+  border-bottom: 1px solid white;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+
+#watchHistory h1{
+  margin-bottom: 50px;
+}
+
+#historyPoPup{
+  display: none;
+  position: fixed;
+  width: 750px;
+  height: 550px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 10px;
+  z-index: 5;
+}
+
+#historyContents{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  padding: 30px;
+}
+
+#historyContents h1{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size: 14px;
+}
+
+#commentHistoryIndex li, .watchedComment li, #historyList li{
+  box-sizing: border-box;
+  position: relative;
+  font-size: 13px;
+  height: 44.5px;
+  float: left;
+  color: black;
+  padding: 10px 10px;
+  border-bottom: 1px dotted black;
+}
+
+#historyList {
+  overflow: auto;
+  width: 100%;
+  height: calc(100% - 55.5px);
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+#historyList::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+#commentHistoryIndex li{
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+
+#historyContents p{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.commentMovieName{
+  width: 180px;
+}
+
+.watchedComment{
+  width: 550px;
+}
+
+.commentDesc{
+  width: 370px;
+}
+
+.commentWrittenDate, .commentVisitedDate{
+  width: 140px;
+}
+
+#historyContents a{
+  text-decoration: none;
+}
+
+#historyPoPupCloseButton{
+  cursor: pointer;
+  position: absolute;
+  top: 3px;
+  right: 13px;
+  width: 22px;
+  height: 22px;
+  font-size: 28px;
+  color: black;
+}
+
+
+@media all and (max-width: 799px) {
+  #historyPoPup {
+    width: 98%;
+    height: 98%;
+  }
+
+  #historyContents{
+    padding: 20px;
+  }
+
+  #historyContents li{
+    height: 55.5px;
+  }
+
+  .commentMovieName{
+    width: 30%;
+  }
+
+  .watchedComment{
+    width: 75%;
+  }
+
+  .commentDesc{
+    width: 45%;
+  }
+
+  .commentWrittenDate, .commentVisitedDate{
+    width: 25%;
+  }
+}
+
+@media screen and (max-device-width: 480px){
+  #historyPoPup {
+    width: 880px !important;
+    height: 1640px !important;
+    border-radius: 20px !important;
+  }
+
+  #historyContents {
+    padding: 50px !important;
+  }
+
+  #commentHistoryIndex li, .watchedComment li{
+    font-size: 34px !important;
+    height: 75.5px;
+  }
+
+  #historyContents li {
+    padding: 35px 10px !important;
+  }
+
+  .commentMovieName {
+    width: 210px;
+  }
+
+  .watchedComment{
+    width: 610px;
+  }
+
+  .commentDesc {
+    width: 400px;
+  }
+
+  .commentWrittenDate, .commentVisitedDate {
+    width: 170px;
+  }
+
+  #historyPoPupCloseButton {
+    cursor: pointer;
+    position: absolute;
+    top: -18px;
+    right: 8px;
+    width: unset;
+    height: unset;
+    font-size: 100px;
+    color: black;
+  }
+
+  #historyContents h1 {
+    font-size: 34px;
+  }
+
+  #historyList {
+    height: calc(100% - 75.5px);
+  }
+
+  #historyList li {
+    font-size: 28px;
+    height: 160px;
+  }
+}

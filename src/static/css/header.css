@@ -1,0 +1,426 @@
+@charset "UTF-8";
+
+.headerUpper, #headerLower{
+	box-sizing: border-box;
+	position: fixed;
+	border-bottom: solid 1px gray;
+	z-index: 4;
+}
+
+.headerUpper{
+  height: 75px;
+  width: 100vw;
+ 	background: linear-gradient(to bottom, black 50%, transparent);
+	border: 0;
+	background-size: 100% 150px;			/* 가로 세로 순*/
+	background-position: 0 -75px;
+	background-repeat: no-repeat;
+	transition: background 0.3s linear;
+}
+
+.transparentON{
+	background-position: 0 0;		/* 그라이언트 위치를 이동하는 방식으로 애니메이션 구현(눈속임) */
+}
+
+#headerLogo{
+	position: absolute;
+	top: 50%;
+	left: 20px;
+	height: auto;
+	width: 425px;
+	transform: translateY(-50%);
+}
+
+#headerLogo p {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: left;
+  transform: translateY(-50%) scale(1, 1.1);
+  text-decoration: none;
+	font-size: 40px;
+  font-family: BungeeOutline;
+	font-weight: bold;
+  color: white;
+	opacity: 1;
+	transition: opacity 0.25s;
+	transition-delay: 0.25s;
+}
+
+.hideheaderLogo{
+	opacity: 0 !important;
+}
+
+#headerTopMenuWrapper{
+	position: absolute;
+	top: 50%;
+	left: 450px;
+	transform: translateY(-50%);
+}
+
+#headerTopMenuWrapper li{
+	float: left;
+	margin: 0 10px;
+}
+
+#headerTopMenuWrapper li::after{
+	clear: left;
+}
+
+#headerTopMenuWrapper a{
+	text-decoration: none;
+}
+
+#headerTopMenuWrapper p{
+	font-size: 16px;
+	box-sizing: border-box;
+	padding: 0 10px;
+	color: white;
+	transition: color 0.3s;
+}
+
+#headerTopMenuWrapper p:hover{
+	color: #E8B955;
+}
+
+#headerIconWrapper{
+	position: absolute;
+	top: 50%;
+	right: 30px;
+	transform: translateY(-50%);
+}
+
+#headerIconWrapper li{
+	float: left;
+	position: relative;
+	height: 32px;
+	margin-right: 35px;
+}
+
+#minWebScrapIcon, #minWebMovieVoteIcon{
+	display: none;
+	width: 23px;
+}
+
+#minWebScrapIcon a, #minWebMovieVoteIcon a{
+	position: absolute;
+  width: 100%;
+	height: 23px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+#minWebScrapIcon a{
+	top: 45%;
+	background-image: url('../image/icon/minWebMyScrap.png');
+
+}
+
+#minWebMovieVoteIcon a{
+	top: 49.5%;
+	background-image: url('../image/icon/minWebMyFavorite.png');
+}
+
+#headerIconWrapper li::after{
+	clear: left;
+}
+
+#headerSearchWrapper{
+	overflow: hidden;
+	position: relative;
+	height: 100%;
+	width: 180px;
+}
+
+.headerSearchIcon, #headerSearch, #searchCloseButton{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.headerSearchIcon{
+	cursor: pointer;
+	right: 0;
+	height: 22px;
+	width: 22px;
+	background-image: url('../image/icon/MagnifyingGlass.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	opacity: 1;
+	transition: all 0.25s;
+	transition-delay: 0.25s;
+}
+
+.headerSearchForm{
+	position: relative;
+	top: 50%;
+	right: -180px;
+	width: 180px;
+	height: 32px;
+	transition: all 0.25s;
+	transform: translateY(-50%);
+}
+
+#headerSearch{
+	box-sizing: border-box;
+	height: 32px;
+	width: 100%;
+	border: 1px solid white;
+	padding-left: 10px;
+	font-size: 16px;
+	background-color: black;
+	color: #CDCDCD;
+	border-radius: 5px;
+}
+
+#searchCloseButton{
+	cursor: pointer;
+	width: 22px;
+	height: 22px;
+	left: 154px;
+	background-repeat: no-repeat;
+}
+
+.showHeaderSearchIcon{
+	opacity: 0;
+ 	transition-delay: 0s;
+}
+
+.showHeaderSearch{
+	right: 0 !important;
+ 	transition-delay: 0.25s;
+}
+
+#headerSearch:focus{
+  outline: none;		/*검색창 클릭시 border 색상 변하지 않도록 설정*/
+}
+
+#headerLoginIcon{
+	cursor: pointer;
+	display: block;
+	position: relative;
+	top: 50%;
+	width: 26px;
+	height: 26px;
+	transform: translateY(-50%);
+	background-image: url('../image/icon/login.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+#profileIcon{
+	cursor: pointer;
+	display: block;
+	position: relative;
+	top: 50%;
+	width: 33px;
+	height: 33px;
+	transform: translateY(-50%);
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+#profileIconImage{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.profileMenu{
+	display: none;
+	position: absolute;
+	top: 30px;
+	right: 0;
+	width: 120px;
+	color: white;
+	background-color: black;
+  z-index: 1;
+  border: 2.5px inset white;
+}
+
+.showProfileMenu{
+	display: block;
+}
+
+.profileMenu li{
+	box-sizing: border-box;
+	width: 100%;
+	height: 28px;
+	margin: 0;
+	border-bottom: 1px solid gray;
+}
+
+.profileMenu li:last-child{
+	border: 0;
+}
+
+#headerMyInfoLink, #headerLogoutButton{
+	display: block;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 13px;
+	padding-left: 10px;
+	transition: color 0.5s;
+}
+
+#headerMyInfoLink:hover, #headerLogoutButton:hover{
+	color: #E8B955;
+}
+
+#headerMyInfoLink{
+	text-decoration: none;
+	color: white;
+}
+
+#uploadButton{
+	right: 100px;
+}
+
+#contentWrapper{
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  left: 0;
+  height: auto;
+  width: 100%;
+  color: white;
+}
+
+#content{
+  background-color: black;
+}
+
+@media all and (max-width: 1090px){
+	#headerIconWrapper li{
+		margin-right: 27px;
+	}
+
+	#headerTopMenuWrapper li{
+		display: none;
+	}
+
+	#headerIconWrapper {
+		right: 5px;
+	}
+
+	#minWebScrapIcon, #minWebMovieVoteIcon{
+		display: block;
+	}
+}
+
+@media all and (min-width: 711px) and (max-width: 820px){
+	#headerLogo {
+		left: 15px;
+	}
+
+	#headerLogo p{
+		width: 80%;
+		font-size: 30px;
+	}
+}
+
+
+@media all and (min-width: 641px) and (max-width: 710px){
+	#headerLogo{
+		left: 10px;
+	}
+
+	#headerLogo p {
+    width: 60%;
+    font-size: 24px;
+	}
+}
+
+@media all and (max-width: 640px){
+	#headerLogo{
+		left: 10px;
+	}
+
+	#headerLogo p{
+		width: 29%;
+	  text-align: left;
+		font-size: 20px;
+    line-height: 22px;
+	}
+}
+
+@media screen and (max-device-width: 480px){
+	.headerUpper {
+		height: 125px;
+		background-size: 100% 250px;
+		background-position: 0 -125px;
+	}
+
+	#headerLogo p{
+		width: 80%;
+    font-size: 52px;
+    line-height: 48px;
+	}
+
+	#headerIconWrapper li {
+		height: 63px;
+    margin-right: 37px;
+	}
+
+	#headerSearchWrapper{
+		width: 330px;
+	}
+
+	.headerSearchIcon {
+		width: 63px;
+		height: 63px;
+	}
+
+	.headerSearchForm{
+		right: -330px;
+		width: 330px;
+		height: 63px;
+	}
+
+	#searchCloseButton{
+		width: 52px;
+    height: 52px;
+    left: 274px;
+	}
+
+	#headerSearch {
+		width: 330px;
+    height: 63px;
+    font-size: 36px;
+	}
+
+	#minWebScrapIcon, #minWebMovieVoteIcon {
+		width: 63px;
+	}
+
+	#minWebScrapIcon a, #minWebMovieVoteIcon a {
+		height: 63px;
+	}
+
+	#profileIcon {
+    width: 63px;
+    height: 63px;
+	}
+
+	#headerLoginIcon{
+		width: 63px;
+		height: 63px;
+	}
+
+	.profileMenu{
+    top: 64px;
+    width: 250px;
+  }
+
+	#headerIconWrapper li{
+    height: 88px;
+    margin-right: 37px;
+	}
+
+	#headerMyInfoLink, #headerLogoutButton{
+		font-size: 36px;
+	}
+}

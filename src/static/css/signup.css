@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+#signUpBanner{
+  display: block;
+  width: 100%;
+  min-height: 650.5px;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0.7;
+}
+
+#signUpUI{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px;
+  height: 400px;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 30px 20px;
+  border-radius: 10px;
+}
+
+#signUpUI h1{
+  font-size: 40px;
+  margin-bottom: 40px;
+  padding: 0 25px;
+}
+
+#formNickName, #formsignUpCheckBoxWrapper, #signUpUI p{
+  box-sizing: border-box;
+  position: relative;
+  left: 50%;
+  height: 40px;
+  width: 320px;
+  transform: translateX(-50%);
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+#formNickName, #formEmail, #formPassword{
+  border: 2px solid white;
+  margin-bottom: 5px;
+}
+
+#signUpUI p{
+  height: auto;
+  font-size: 12px;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+#formButton{
+  cursor: pointer;
+  background-color: #EA0000;
+  border: 0;
+  color: white;
+  margin: 7.5px 0;
+}
+
+@media screen and (max-device-width: 480px){
+  #signUpBanner {
+    min-height: calc(100vh - 175px);
+  }
+
+  #signUpUI {
+    width: 700px;
+    height: 980px;
+    padding: 90px 60px;
+    border-radius: 30px;
+  }
+
+  #signUpUI h1 {
+    font-size: 80px;
+    margin-bottom: 60px;
+    padding: 0 25px;
+  }
+
+  #formNickName, #signUpUI p{
+    height: 95px;
+    width: 580px;
+    font-size: 38px;
+    border-radius: 15px;
+  }
+
+  #signUpUI p{
+    height: auto;
+    font-size: 34px;
+    margin-bottom: 35px;
+  }
+}

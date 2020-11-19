@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: BungeeOutline;
+	src: url(../font/BungeeOutline-Regular.ttf) format('woff');
+}
+
+html{
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	font-size: 10px;
+}
+
+body, header, #content, footer, a, div, p, ul, li, h1, h2, h3{ /* 기본적인 margin, border, padding 0으로 설정*/
+	padding: 0;
+  border: 0;
+  margin: 0;
+}
+
+/* 기본적으로 리스트의 스타일이 안보이도록 설정 */
+ul, ol, li {
+	list-style: none;
+}
+
+body{
+  background-color: black;
+}
+
+@media all and (min-width: 1024px) and (max-width: 1199px) {	/* ui를 rem 단위로 조절 */
+  html{
+    font-size: 8.5px;
+  }
+}
+
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  html{
+    font-size: 7px;
+  }
+}
+
+@media all and (min-width: 600px) and (max-width: 767px) {
+  html{
+    font-size: 5.5px;
+  }
+}
+
+@media all and (min-width: 480px) and (max-width: 599px) {
+  html{
+    font-size: 4px;
+  }
+}

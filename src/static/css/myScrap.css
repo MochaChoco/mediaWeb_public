@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+#myScrapWrapper{
+  position: relative;
+  top: 75px;
+  margin: 0 0 175px 20px;
+}
+
+#myScrapWrapper h1{
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+#scrapWrapper{
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  width: calc(260px * 5);
+  transform: translateX(-50%);
+}
+
+.myScrapMovies{
+   box-sizing: border-box;
+   width: 260px;
+   height: 173.3px;
+}
+
+.myScrapMovies img:hover{
+  width: 90%;
+  height: 90%;
+}
+
+#noScrapWarning{
+  font-size: 21px;
+  font-weight: normal;
+  margin-top: 20px;
+}
+
+
+@media all and (min-width: 1200px) and (max-width: 1365px) {
+  #scrapWrapper{
+    width: calc(275px * 4);
+  }
+
+  .myScrapMovies{
+     width: 275px;
+     height: 183.3px;
+  }
+}
+
+@media all and (min-width: 1024px) and (max-width: 1199px) {
+  #scrapWrapper{
+    width: calc(308px * 3);
+  }
+
+  .myScrapMovies{
+     width: 308px;
+     height: 205.3px;
+  }
+}
+
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  #scrapWrapper{
+    width: calc(334px * 2);
+  }
+
+  .myScrapMovies{
+     width: 334px;
+     height: 222.7px;
+  }
+}
+
+@media all and (max-width: 767px){
+  #noScrapWarning {
+    font-size: 21px;
+    font-weight: normal;
+    margin-top: 20px;
+  }
+
+  #scrapWrapper{
+    width: 90vw;
+  }
+
+  .myScrapMovies{
+     width: 45vw;
+     height: calc(45vw * (2/3));
+  }
+}
+
+@media screen and (max-device-width: 480px){
+  #myScrapWrapper{
+    top: 155px;
+    margin: 0 0 330px 20px;
+  }
+
+  #myScrapWrapper h1 {
+    font-size: 60px;
+    margin-bottom: 35px;
+  }
+
+  #scrapWrapper {
+    width: 80vw;
+  }
+
+  #noScrapWarning {
+    font-size: 40px;
+  }
+
+  .myScrapMovies {
+    width: 100%;
+    height: calc(80vw / 3 * 2);
+  }
+}

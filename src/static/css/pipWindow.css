@@ -1,0 +1,86 @@
+#pipContent{
+	width: 100%;
+	height: 100%;
+}
+
+.pipHide{
+  display: none;
+}
+
+.resizable {
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 320px;
+  height: 180px;
+  background-color: black;
+  border: 1px solid white;
+  z-index: 3;
+}
+
+.resizable .resizer{
+  position: absolute;
+  width: 10px;
+  height: 10px;
+}
+
+.resizable .resizer.top {
+  width: 100%;
+  top: -5px;
+  cursor: ns-resize; /*resizer cursor*/
+}
+
+.resizable .resizer.right {
+  height: 100%;
+  right: -5px;
+  transform: translateY(-100%);
+  cursor: ew-resize;
+}
+
+.resizable .resizer.bottom {
+  width: 100%;
+  bottom: -5px;
+  cursor: ns-resize;
+}
+
+.resizable .resizer.left {
+  height: 100%;
+  left: -5px;
+  transform: translateY(-100%);
+  cursor: ew-resize;
+}
+
+.resizable .resizer.top-left {
+  left: -5px;
+  top: -5px;
+  cursor: nwse-resize; /*resizer cursor*/
+}
+.resizable .resizer.top-right {
+  right: -5px;
+  top: -5px;
+  cursor: nesw-resize;
+}
+.resizable .resizer.bottom-left {
+  left: -5px;
+  bottom: -5px;
+  cursor: nesw-resize;
+}
+.resizable .resizer.bottom-right {
+  right: -5px;
+  bottom: -5px;
+  cursor: nwse-resize;
+}
+
+.mover{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#watchPlayer .vjs-control-bar{
+  z-index: 4;
+}

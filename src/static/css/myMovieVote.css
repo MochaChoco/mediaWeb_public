@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+#myMovieVoteWrapper{
+  position: relative;
+  top: 75px;
+  margin: 0 0 175px 20px;
+}
+
+#myMovieVoteWrapper h1{
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+#voteWrapper{
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  width: calc(260px * 5);
+  transform: translateX(-50%);
+}
+
+.myMovieVote{
+   box-sizing: border-box;
+   width: 260px;
+   height: 173.3px;
+}
+
+.myMovieVote img:hover{
+  width: 90%;
+  height: 90%;
+}
+
+#noMovieVoteWarning{
+  font-size: 21px;
+  font-weight: normal;
+  margin-top: 20px;
+}
+
+
+@media all and (min-width: 1200px) and (max-width: 1365px) {
+  #voteWrapper{
+    width: calc(275px * 4);
+  }
+
+  .myMovieVote{
+     width: 275px;
+     height: 183.3px;
+  }
+}
+
+@media all and (min-width: 1024px) and (max-width: 1199px) {
+  #voteWrapper{
+    width: calc(308px * 3);
+  }
+
+  .myMovieVote{
+     width: 308px;
+     height: 205.3px;
+  }
+}
+
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  #voteWrapper{
+    width: calc(334px * 2);
+  }
+
+  .myMovieVote{
+     width: 334px;
+     height: 222.7px;
+  }
+}
+
+@media all and (max-width: 767px){
+  #novoteWarning {
+    font-size: 21px;
+    font-weight: normal;
+    margin-top: 20px;
+  }
+
+  #voteWrapper{
+    width: 90vw;
+  }
+
+  .myMovieVote{
+     width: 45vw;
+     height: calc(45vw * (2/3));
+  }
+}
+
+@media screen and (max-device-width: 480px){
+  #myMovieVoteWrapper{
+    top: 155px;
+    margin: 0 0 330px 20px;
+  }
+
+  #myMovieVoteWrapper h1 {
+    font-size: 60px;
+    margin-bottom: 35px;
+  }
+
+  #voteWrapper {
+    width: 80vw;
+  }
+
+  #noMovieVoteWarning {
+    font-size: 40px;
+  }
+
+  .myMovieVote {
+    width: 100%;
+    height: calc(80vw / 3 * 2);
+  }
+}

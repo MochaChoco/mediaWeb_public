@@ -1,0 +1,278 @@
+@charset "UTF-8";
+
+#watchWrapper{
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  margin-bottom: 4rem;
+}
+
+#watchTeaser{
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+#watchLeft{
+  box-sizing: border-box;
+  max-width: 96rem;
+  width: 65vw;
+  height: auto;
+  padding: 1rem 2rem;
+  background-color: pink;
+  margin-bottom: 7.5rem;
+}
+
+#watchMoveInfo{
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 1.5rem;
+}
+
+#watchMoveInfo h1{
+  display: inline-block;
+  font-size: 30px;
+  font-weight: normal;
+  margin: 0 5rem 2rem 0;
+}
+
+#watchMoveInfo ul{
+  display: flex;
+  flex-flow: row wrap;      /* 수평 형태로 배치, 줄바꿈 허용*/
+}
+
+#watchMoveInfo li{
+  width: 25rem;
+  font-size: 16px;
+  margin: 0 5rem 1rem 0;
+}
+
+#watchMoveInfo li p{
+  margin-bottom: 0.2rem;
+}
+
+#watchMoveInfo li p:nth-child(2n){    /* 두번째 자식 선택*/
+  color: gray;
+}
+
+#watchMoveInfo li:last-child{
+  width: 90%;
+}
+
+.watchMovieTitle{
+  font-size: 23px;
+}
+
+.watchUserName{
+
+}
+
+.watchViewingCount{
+
+}
+
+.watchUploadTime{
+
+}
+
+#watchPlayer{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+.scrapButton, .voteButton{
+  display: inline-block;
+  width: 100px;
+  padding: 2px 4px;
+}
+
+.voteButton{
+  width: 130px;
+}
+
+.scrapButton img, .voteButton img{
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.scrapButton p, .voteButton p{
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transform: translateY(-17.5%);
+  font-size: 14px;
+  margin-left: 3px;
+}
+
+#videoWrapper{
+  position: relative;
+  width: calc(100% - 4rem);
+  height: calc(90vh - 75px);
+  padding: 0 2rem;
+  transition: all 0.5s;
+}
+
+video{
+  height: 100%;
+  width: 100%;
+}
+
+#commentMenu{
+  box-sizing: border-box;
+  display: none;
+  position: relative;
+  width: 100%;
+  top: 0;
+  padding: 1rem 3rem;
+  transition: all 0.3s;
+}
+
+#commentMenu > h1{ /* 직계 h1만 찾음. 여기선 댓글 닫기 버튼*/
+  box-sizing: border-box;
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  height: 46.4px;
+  cursor: pointer;
+  padding: 10px 15px;
+  font-size: 20px;
+}
+
+#comment{
+  overflow: auto;
+  -ms-overflow-style: none;   /* 스크롤바 숨기기(IE and Edge) */
+  scrollbar-width: none;      /* 스크롤바 숨기기(firefox) */
+  display: none;
+  position: relative;
+  top: 46.4px;
+  height: calc(100vh - 145px);
+}
+
+#comment::-webkit-scrollbar{    /* 스크롤바 숨기기(크롬, 사파리, 오페라) */
+  display:none;
+}
+
+#comment h1{
+  cursor: default;
+  font-size: 16px;
+}
+
+.goToTopButton{
+  box-sizing: border-box;
+  position: absolute;
+  top: 10px;
+  right: 22px;
+  height: 46.4px;
+  cursor: pointer;
+  padding: 10px 15px;
+  font-size: 20px;
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.goToTopHide{
+  opacity: 0;
+  cursor: default;
+}
+
+#commentTop{
+  width: 0;
+  height: 0;
+}
+
+@media all and (max-width: 767px){
+  #watchTeaser{
+    top: 75px;
+    padding-bottom: 125px;
+    margin-bottom: 175px;
+  }
+
+  #watchMoveInfo h1 {
+    width: 100%;
+    margin: 0 0 10px 0;
+  }
+
+  .scrapButton, .voteButton {
+    padding: 0;
+    margin-bottom: 10px;
+  }
+
+  #watchMoveInfo li {
+    width: 200px;
+    font-size: 16px;
+    margin: 0 20px 10px 0;
+  }
+
+  .watchTeaserPlayButton{
+    width: 90vw;
+    margin: 0 5vw;
+  }
+}
+
+@media screen and (max-device-width: 480px){
+  #watchTeaser{
+    top: 125px;
+    padding-bottom: 300px;
+    margin-bottom: 280px;
+  }
+
+  #watchWrapper{
+    margin-bottom: 100px;
+  }
+
+  #watchMoveInfo h1 {
+    width: 100%;
+    font-size: 46px;
+    margin: 0 0 20px 0;
+  }
+
+  .scrapButton, .voteButton {
+    width: 230px;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .scrapButton{
+    margin-right: 20px;
+  }
+
+  .voteButton{
+    width: 290px;
+  }
+
+  .scrapButton img, .voteButton img {
+    position: relative;
+    top: 2.5px;
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+  }
+
+  .scrapButton p, .voteButton p {
+    font-size: 34px;
+  }
+
+  #watchMoveInfo li {
+    width: 200px;
+    font-size: 34px;
+    margin: 0 30px 20px 0;
+  }
+
+  .watchTeaserPlayButton{
+    width: 90vw;
+    margin: 0 5vw;
+  }
+
+  #videoWrapper{
+    height: calc(85vh - 125px);
+  }
+
+  #comment h1 {
+    font-size: 36px;
+  }
+}

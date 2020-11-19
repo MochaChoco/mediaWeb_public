@@ -1,0 +1,163 @@
+@charset "UTF-8";
+
+#loginBanner{
+  display: block;
+  width: 100%;
+  min-height: 610.5px;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0.5;
+}
+
+#loginUI{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px;
+  height: 370px;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 30px 20px;
+  border-radius: 10px;
+}
+
+#loginUI h1{
+  font-size: 40px;
+  margin-bottom: 40px;
+  padding: 0 25px;
+}
+
+#formEmail, #formPassword, #formButton, #formLoginCheckBoxWrapper, #signUpTextWrapper{
+  box-sizing: border-box;
+  position: relative;
+  left: 50%;
+  height: 40px;
+  width: 320px;
+  transform: translateX(-50%);
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+#formEmail, #formPassword{
+  border: 2px solid white;
+}
+
+#formEmail{
+  margin-bottom: 17.5px;
+}
+
+#formPassword{
+  margin-bottom: 32px;
+}
+
+#formButton{
+  cursor: pointer;
+  background-color: #EA0000;
+  border: 0;
+  color: white;
+  margin-bottom: 7.5px;
+}
+
+#formLoginCheckBoxWrapper{
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+#formLoginCheckBoxWrapper input, #formLoginCheckBoxWrapper span, #formLoginCheckBoxWrapper a{
+  position: relative;
+  display: inline-block;
+}
+
+#formLoginCheckBoxWrapper input{
+  margin-right: 5px;
+}
+
+#formLoginCheckBoxWrapper span, #formLoginCheckBoxWrapper a{
+  font-size: 12px;
+}
+
+#formLoginCheckBoxWrapper a{
+  left: 135px;
+  color: white;
+}
+
+#signUpTextWrapper{
+  padding: 0;
+  margin-bottom: 9px;
+}
+
+#signUpText, #signUpButton{
+  font-size: 13.9px;
+}
+
+#signUpText{
+  margin-right: 5px;
+}
+
+#signUpButton{
+  text-decoration: none;
+  font-weight: bold;
+	color: #E8B955;
+}
+
+#alertLoginMessage{
+  text-align: center;
+  font-size: 15px;
+  color: red;
+}
+
+@media screen and (max-device-width: 480px){
+  #loginBanner {
+    min-height: calc(100vh - 175px);
+  }
+
+  #loginUI {
+    width: 700px;
+    height: 770px;
+    padding: 90px 60px;
+    border-radius: 30px;
+  }
+
+  #loginUI h1 {
+    font-size: 80px;
+    margin-bottom: 60px;
+    padding: 0 25px;
+  }
+
+  #formNickName, #formEmail, #formPassword {
+    margin-bottom: 12px !important;
+  }
+
+  #formEmail, #formNickName, #formPassword, #formButton, #formLoginCheckBoxWrapper, #formsignUpCheckBoxWrapper, #signUpTextWrapper{
+    height: 95px;
+    width: 580px;
+    font-size: 38px;
+    border-radius: 15px;
+  }
+
+  #formButton {
+    margin-top: 12.5px !important;
+    margin-bottom: 25px !important;
+  }
+
+  #formLoginCheckBoxWrapper {
+    height: 50px;
+    margin-bottom: 35px;
+  }
+
+  #formLoginCheckBoxWrapper input {
+    top: 5px;
+    width: 34px;
+    height: 34px;
+    margin-right: 15px;
+  }
+
+  #formLoginCheckBoxWrapper span, #formLoginCheckBoxWrapper a {
+    font-size: 34px;
+  }
+
+  #signUpText, #signUpButton {
+    font-size: 36px;
+  }
+}

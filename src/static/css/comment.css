@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+.commentWrapper{
+  margin : 20px 0 20px 15px;
+  font-size: 14px;
+}
+
+.commentProfileImage {
+  float: left;
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
+
+.commentWrapper p{
+  margin-bottom: 5px;
+}
+
+.commentWrapper p:last-child{
+  clear: left;
+}
+
+.commentId, .commentVoteCount{
+  display: none;
+}
+
+.commentUserId, .commentDate{
+  display: inline-block;
+}
+
+.commentUserId{
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.commentInputUI{
+  display: none;
+  height: auto;
+}
+
+.commentInputUI img{
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+}
+
+.commentInputUI textarea{
+  width: calc(100% - 50px);
+  height: 20px;
+  background-color: black;
+  color: white;
+  border: 0px;
+  border-bottom: 1px solid gray;
+  transition: all 0.3s;
+}
+
+.commentInputUI textarea:focus{   /* 클릭했을때 outline 생성 방지 */
+  outline: none !important;
+  border-bottom: 1px solid white;
+}
+
+.firstCommentButton{
+  position: relative;
+  left: 200px;
+  margin-bottom : 40px;
+}
+
+.firstCommentForm{
+  display: block;
+}
+
+.firstButton{
+  display: none !important;
+}
+
+.submitButton, .hideButton, .commentWriteButton, .commentUpdateButton, .commentDeleteButton, .commentVoteButton, .foldButton{
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 20px 5px 0;
+  transition: all 0.3s;
+}
+
+.submitButton, .hideButton{
+  margin: 0 0 0 20px;
+  position: relative;
+  float: right;
+}
+
+.submitButton::after{
+  clear: right;
+}
+
+.submitButton:hover, .hideButton:hover, .commentWriteButton:hover, .commentUpdateButton:hover, .commentDeleteButton:hover, .foldButton:hover{
+  color: gold;
+}
+
+.commentVoteButton{
+  cursor: default;
+  margin-left: 45px;
+}
+
+.commentVoteButton img{
+  cursor: pointer;
+  position: relative;
+  bottom: -2px;
+  height: 16px;
+}
+
+.commentVoteButton p{
+  cursor: default;
+  display: inline-block;
+}
+
+.commentKeyPath{
+  display: none;
+}
+
+@media screen and (max-device-width: 480px){
+  #commentMenu > h1 {
+    height: 85.4px;
+    font-size: 45px;
+  }
+
+  .goToTopButton {
+    top: 16px;
+    right: 30px;
+    font-size: 40px;
+  }
+
+  .commentInputUI img {
+    height: 75px;
+    width: 75px;
+  }
+
+  .commentInputUI textarea {
+    width: calc(100% - 115px);
+    height: 65px;
+    font-size: 34px;
+    border-bottom: 2.5px solid gray;
+  }
+
+  #comment{
+    top: 85.4px;
+  }
+
+  .commentProfileImage {
+    width: 95px;
+    height: 95px;
+    margin-right: 15px;
+  }
+
+  .commentWrapper {
+    margin: 20px 0 20px 15px;
+    font-size: 34px;
+  }
+
+  .commentVoteButton img {
+    height: 31px;
+  }
+}
