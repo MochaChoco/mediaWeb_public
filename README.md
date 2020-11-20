@@ -1,3 +1,7 @@
+![Preview](./readme/Images/main.png)
+# 영화 트레일러 사이트
+영화 트레일러를 전문적으로 모아놓은 사이트를 구현한 포트폴리오입니다.
+
 ## 링크 주소
 [바로 가기](https://www.movientrailer.com)
 
