@@ -315,7 +315,7 @@ class VideoPlayerApp extends Component {
       post.id = movieInfo._id;
       post.userEmail = userInfo.email;
 
-      fetch('/api/setWatchHistory',{
+      fetch('/api/user/setWatchHistory',{
           method :"POST",
           headers:{
             'content-type':'application/json'

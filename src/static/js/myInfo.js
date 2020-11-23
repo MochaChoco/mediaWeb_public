@@ -140,7 +140,7 @@ class MyInfoApp extends Component {
     formData.append("email", Redux.getState().userInfo.email);
     formData.append("profileImage", Redux.getState().userInfo.profileImage);
     if(e.target.profileIconImage.files[0] != undefined){
-      fetch('/api/myInfo/submitProfileImage',{
+      fetch('/api/user/submitProfileImage',{
           method :"POST",
           body: formData,
           credentials: 'include'

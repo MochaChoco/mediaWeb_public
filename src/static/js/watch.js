@@ -82,7 +82,7 @@ class WatchApp extends Component {
      id: this.state.id,
     }
 
-    fetch('/api/updateViewingCount',{
+    fetch('/api/movie/updateViewingCount',{
        method :"POST",
        headers:{
          'content-type':'application/json'
@@ -172,7 +172,7 @@ class WatchApp extends Component {
     scrap.fileUrl = this.state.curMovieInfo._fileUrl,
     scrap.thumbnail = this.state.curMovieInfo._thumbnailUrl;
 
-    fetch('/api/manageScrap',{
+    fetch('/api/user/manageScrap',{
        method :"POST",
        headers:{
          'content-type':'application/json'
@@ -232,7 +232,7 @@ class WatchApp extends Component {
     voteInfo.thumbnail = this.state.curMovieInfo._thumbnailUrl;
     voteInfo.userEmail = userInfo.email;
 
-    fetch('/api/manageMovieVote',{
+    fetch('/api/user/manageMovieVote',{
        method :"POST",
        headers:{
          'content-type':'application/json'
@@ -242,7 +242,9 @@ class WatchApp extends Component {
     }).then(res=>res.json())
     .then(data=>{
       if(data){
-        Redux.dispatch({type:'setUserInfo', userInfo: data.userInfo});
+        const userInfo = Redux.getState().userInfo;
+        userInfo.myMovieVote = data.movieVote;
+        Redux.dispatch({type:'setUserInfo', userInfo: userInfo});
         this.setState({curMovieInfo : data.movieInfo});
         console.log("영화 좋아요 정보 갱신 성공");
       } else{

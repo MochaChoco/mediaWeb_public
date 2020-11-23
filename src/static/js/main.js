@@ -123,7 +123,7 @@ class MainApp extends Component {
 
   logOutUser(e){        // 로그아웃 처리
     e.stopPropagation();
-    fetch('/api/logOutUser',{
+    fetch('/api/user/logOutUser',{
       headers : {
         'content-yype': 'application/json',
         'accept': 'application/json'
@@ -145,7 +145,7 @@ class MainApp extends Component {
       Redux.dispatch({type:'setIsLogin', isLogined: true});
       Redux.dispatch({type:'setUserInfo', userInfo: info});   // userInfo 형식을 유지함.
 
-      fetch('/api/checkSession', {    // 현재의 세션이 유효한지 검사
+      fetch('/api/user/checkSession', {    // 현재의 세션이 유효한지 검사
          method :"POST",
          headers:{
            'content-type':'application/json'
@@ -177,7 +177,7 @@ class MainApp extends Component {
   }
 
   getMovieInfo(){       // DB에서 영화 정보 object 가져옴
-    fetch('/api/getMovieInfo',{
+    fetch('/api/movie/getMovieInfo',{
       headers : {
         'content-yype': 'application/json',
         'accept': 'application/json'
