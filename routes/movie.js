@@ -26,26 +26,10 @@ router.get('/getMovieInfo', (req, res) => {
   });
 });
 
-  // 현재 페이지에 맞는 영화 정보를 불러옴
-router.post('/getWatchMovieOne', function(req, res){
-  const collection = client.db("movieList").collection("info");
-  collection.findOne({_id : mongoObjectId(req.body.id)}, function(err, result){
-    if(err)
-      throw err;
-    else{
-      if(result != undefined){
-        res.send(result);
-      } else {
-        res.send(false);
-      }
-    }
-  });
-});
-
   // 조회수 갱신
-router.post('/updateViewingCount', function(req, res){
+router.get('/updateViewingCount=:id', function(req, res){
   const collection = client.db("movieList").collection("info");
-  collection.findOneAndUpdate({_id : mongoObjectId(req.body.id)}, {$inc: {_viewingCount: 1}}, {returnOriginal : false}, function(err, documents){
+  collection.findOneAndUpdate({_id : mongoObjectId(req.params.id)}, {$inc: {_viewingCount: 1}}, {returnOriginal : false}, function(err, documents){
     if(err)
       throw err;
     else{

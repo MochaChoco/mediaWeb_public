@@ -220,7 +220,7 @@ class CommentApp extends Component {
       return;
 
     fetch('/api/watch/writeComment',{
-        method :"POST",
+        method :"PATCH",
         headers:{
           'content-type':'application/json'
         },
@@ -273,7 +273,7 @@ class CommentApp extends Component {
       return;
 
     fetch('/api/watch/updateComment',{
-        method :"POST",
+        method :"PATCH",
         headers:{
           'content-type':'application/json'
         },
@@ -308,7 +308,7 @@ class CommentApp extends Component {
     post.commentId = form.parentNode.querySelector('.commentId').innerHTML;
 
     fetch('/api/watch/deleteComment',{
-        method :"POST",
+        method :"PATCH",
         headers:{
           'content-type':'application/json'
         },
@@ -347,7 +347,7 @@ class CommentApp extends Component {
     curMovieUrl = curMovieUrl[1];
     const userInfo = Redux.getState().userInfo;
     let voteButton = [];
-    if(userInfo != null){
+    if(userInfo != null && userInfo.myCommentVote != undefined){
       const vote = userInfo.myCommentVote;
       for(let i = 0 ; i < Object.keys(vote).length ; i++){
         if(Object.keys(vote)[i] == curMovieUrl){      // db에서 유저가 해당 영화에 댓글 달았던 적이 있는지 판단
@@ -402,7 +402,7 @@ class CommentApp extends Component {
     post.commentId = keyPath[0];
 
     fetch('/api/watch/manageCommentVote',{
-        method :"POST",
+        method :"PATCH",
         headers:{
           'content-type':'application/json'
         },

@@ -78,20 +78,14 @@ class WatchApp extends Component {
   }
 
   updateViewingCount(){       // 시청 시 조회수 갱신
-    const post = {
-     id: this.state.id,
-    }
-
-    fetch('/api/movie/updateViewingCount',{
-       method :"POST",
-       headers:{
-         'content-type':'application/json'
-       },
-       body:JSON.stringify(post),
-       credentials: 'include'
+    fetch('/api/movie/updateViewingCount=' + this.state.id,{
+      headers : {
+        'content-yype': 'application/json',
+        'accept': 'application/json'
+      },
+      credentials: 'include'
     }).then(res=>res.json())
     .then(data=>{
-      let movieInfo = Redux.getState().movieInfo;
       this.setState({curMovieInfo: data.result});
     });
   }
@@ -172,8 +166,8 @@ class WatchApp extends Component {
     scrap.fileUrl = this.state.curMovieInfo._fileUrl,
     scrap.thumbnail = this.state.curMovieInfo._thumbnailUrl;
 
-    fetch('/api/user/manageScrap',{
-       method :"POST",
+    fetch('/api/user/manageScrap', {
+       method :"PATCH",
        headers:{
          'content-type':'application/json'
        },
@@ -209,7 +203,7 @@ class WatchApp extends Component {
   checkMovieVote(userInfo){     // 좋아요 버튼을 눌렀는지 체크
     let voteButton = [];
     const movieInfo = this.state.curMovieInfo;
-    if(userInfo != null){
+    if(userInfo != null && userInfo.myMovieVote != undefined){
       const vote = userInfo.myMovieVote;
       for(let i = 0 ; i < Object.keys(vote).length ; i++){
         if(Object.keys(vote)[i] == this.state.id){
@@ -228,12 +222,12 @@ class WatchApp extends Component {
     const { userInfo } = this.props;
     const voteInfo = {};
     voteInfo.movieId = this.state.id;
-    voteInfo.fileUrl = this.state.curMovieInfo._fileUrl,
+    voteInfo.fileUrl = this.state.curMovieInfo._fileUrl;
     voteInfo.thumbnail = this.state.curMovieInfo._thumbnailUrl;
     voteInfo.userEmail = userInfo.email;
 
     fetch('/api/user/manageMovieVote',{
-       method :"POST",
+       method :"PATCH",
        headers:{
          'content-type':'application/json'
        },

@@ -9,7 +9,7 @@ const sanitizeHtml = require('sanitize-html');
 client.connect(err => {
 });
 
-router.post('/writeComment', function(req, res){
+router.patch('/writeComment', function(req, res){
   const size = 10;
   const movieCollection = client.db("movieList").collection("info");
   const authCollection = client.db("auth").collection("sessions");
@@ -128,7 +128,7 @@ router.post('/writeComment', function(req, res){
    });
 });
 
-router.post('/updateComment', function(req, res){
+router.patch('/updateComment', function(req, res){
   const movieCollection = client.db("movieList").collection("info");
   const authCollection = client.db("auth").collection("sessions");
   const userCollection = client.db("userList").collection("info");
@@ -227,7 +227,7 @@ router.post('/updateComment', function(req, res){
   });
 });
 
-router.post('/deleteComment', function(req, res){        // 커맨드 삭제 처리
+router.patch('/deleteComment', function(req, res){        // 커맨드 삭제 처리
   const movieCollection = client.db("movieList").collection("info");
   const authCollection = client.db("auth").collection("sessions");
   const userCollection = client.db("userList").collection("info");
@@ -317,7 +317,8 @@ router.post('/deleteComment', function(req, res){        // 커맨드 삭제 처
     });
 });
 
-router.post('/manageCommentVote', function(req, res){
+router.patch('/manageCommentVote', function(req, res){
+  const movieCollection = client.db("movieList").collection("info");
   const userCollection = client.db("userList").collection("info");
   userCollection.findOne({email: req.body.userEmail}, function(err, result){
     if(err)

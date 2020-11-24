@@ -146,16 +146,15 @@ class MainApp extends Component {
       Redux.dispatch({type:'setUserInfo', userInfo: info});   // userInfo 형식을 유지함.
 
       fetch('/api/user/checkSession', {    // 현재의 세션이 유효한지 검사
-         method :"POST",
-         headers:{
-           'content-type':'application/json'
-         },
-         body:JSON.stringify(info),
-         credentials: 'include'
+        headers : {
+          'content-yype': 'application/json',
+          'accept': 'application/json'
+        },
+        credentials: 'include'
       }).then(res=>res.json())
           .then(data=>{
             if(data != false){
-              delete info.id;    // userInfo에 id값을 불필요하므로 제거
+              delete info.id;    // userInfo에 id값은 불필요하므로 제거
               info.email = data.email;
               info.profileImage = data.profileImage;
               info.myScrap = data.myScrap;

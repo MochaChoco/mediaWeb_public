@@ -16,7 +16,7 @@ client.connect(err => {
 });
 
   // 현재 세션을 판단하여 세션이 일치하면 이메일과 프로필 사진 정보를 클라이언트로 보냄
-router.post('/checkSession', function(req, res){
+router.get('/checkSession', function(req, res){
   const collection = client.db("auth").collection("sessions");
   collection.findOne({_id : req.session.id}, function(err, result){
     if(err)
@@ -74,7 +74,7 @@ router.get('/logOutUser', function(req, res){
 });
 
   // 프로필 사진 업로드 요청 시 처리
-router.post('/submitProfileImage', upload.single('profileIconImage'), function(req, res){
+router.patch('/submitProfileImage', upload.single('profileIconImage'), function(req, res){
   const collection = client.db("userList").collection("info");
   const s3 = new aws.S3();
   const filePath = "./routes/temp/" + req.file.filename;
@@ -117,7 +117,7 @@ router.post('/submitProfileImage', upload.single('profileIconImage'), function(r
   });
 });
 
-router.post('/setWatchHistory', function(req, res){
+router.patch('/setWatchHistory', function(req, res){
   const size = 10;
   const userCollection = client.db("userList").collection("info");
   userCollection.findOne({email: req.body.userEmail}, function(err, result){
@@ -150,7 +150,7 @@ router.post('/setWatchHistory', function(req, res){
   });
 });
 
-router.post('/manageScrap', function(req, res){
+router.patch('/manageScrap', function(req, res){
   const collection = client.db("userList").collection("info");
   collection.findOne({$and:[{name: req.body.userName, email: req.body.email}]}, function(err, result){
     if(err)
@@ -197,7 +197,7 @@ router.post('/manageScrap', function(req, res){
   });
 });
 
-router.post('/manageMovieVote', function(req, res){
+router.patch('/manageMovieVote', function(req, res){
   const userCollection = client.db("userList").collection("info");
   const movieCollection = client.db("movieList").collection("info");
   userCollection.findOne({email: req.body.userEmail}, function(err, result){

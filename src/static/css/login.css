@@ -125,6 +125,10 @@
     padding: 0 25px;
   }
 
+  #loginUI p{
+    font-size: 34px;
+  }
+
   #formNickName, #formEmail, #formPassword {
     margin-bottom: 12px !important;
   }
@@ -134,6 +138,10 @@
     width: 580px;
     font-size: 38px;
     border-radius: 15px;
+  }
+
+  #signUpTextWrapper{
+    margin-bottom: 25px;
   }
 
   #formButton {
