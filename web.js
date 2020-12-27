@@ -29,6 +29,7 @@ client.connect(err => {
   setTimeout(setCategoryNew, 5000);
   setInterval(setCategoryHot, 3600000);   // 1시간마다 좋아요 수에 따른 인기 영화 목록 갱신
   setInterval(setCategoryNew, 86400000);   // 24시간마다 최신 영화 목록 갱신
+  setInterval(setAutoRefreshDate, 86400000 * 7);    // 7일마다 영화 업로드 시간 자동 갱신
 });
 
 app.listen(portNum, function() {
@@ -115,3 +116,41 @@ function setCategoryNew(){
     }
   });
 };
+
+function setAutoRefreshDate(){   // 자동으로 영화의 업로드 시간들을 갱신하는 함수
+  const collection = client.db("movieList").collection("info");
+  const refreshCount = 5;           // 업로드 시간을 갱신시킬 시킬 영화 개수
+  collection.find().toArray(function(err, result) {
+    if(err)
+      throw err;
+    else{
+        let randNumList = [];
+        while(true){
+          const randNum = Math.floor(Math.random() * result.length);
+          if (randNumList.includes(randNum))
+            continue;
+          else
+            randNumList.push(randNum);
+
+          if(randNumList.length >= refreshCount)
+            break;
+        }
+
+        const date = new Date();
+        for(let i = 0; i < randNumList.length ; i++){
+          result[randNumList[i]]._uploadTime = date;
+        }
+
+      collection.bulkWrite(
+        result.map((data) =>
+          ({
+            updateOne: {
+              filter: { _id: data._id },
+              update: { $set: {_uploadTime: data._uploadTime} }   // 태그 정보만 업데이트
+            }
+          })
+        )
+      );
+    }
+  });
+}
