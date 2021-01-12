@@ -120,12 +120,12 @@ class SignUpApp extends Component {
       }).then(res=>res.json())
           .then(data=>{
             if(data){
-              console.log("가입 성공");
+              // console.log("가입 성공");
               this.setState({redirect: '/auth/login'});
             }
             else{
               alert("중복된 닉네임이나 이메일을 입력하셨습니다.");
-              console.log("가입 실패");
+              // console.log("가입 실패");
             }
           });
     }

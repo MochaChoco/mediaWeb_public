@@ -80,7 +80,7 @@ class WatchApp extends Component {
   updateViewingCount(){       // 시청 시 조회수 갱신
     fetch('/api/movie/updateViewingCount=' + this.state.id,{
       headers : {
-        'content-yype': 'application/json',
+        'content-type': 'application/json',
         'accept': 'application/json'
       },
       credentials: 'include'
@@ -253,6 +253,7 @@ class WatchApp extends Component {
         document.getElementById("watchWrapper").style.top = "125px";
       else
         document.getElementById("watchWrapper").style.top = "75px";
+
       document.getElementById("watchTeaser").style.display = "none";
       document.getElementById("watchMoveInfo").style.display = "none";
       document.getElementById("videoWrapper").style.display = "block";

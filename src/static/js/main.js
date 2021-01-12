@@ -35,10 +35,10 @@ class MainApp extends Component {
       this.state.isMobile = true;
     }
 
-    if(!this.state.isMobile)
-      console.log("access device : PC");
-    else
-      console.log("access device : mobile");
+    // if(!this.state.isMobile)
+    //    console.log("access device : PC");
+    // else
+    //    console.log("access device : mobile");
   }
 
   render() {
@@ -111,7 +111,6 @@ class MainApp extends Component {
     );
   }
 
-
   /* 로그인과 회원가입 창에선 아이콘이 안보이도록 설정한다. */
   showUpperIcon(){      // header에 아이콘 보이도록 설정
     document.getElementById("headerIconWrapper").style.display = "block";
@@ -125,7 +124,7 @@ class MainApp extends Component {
     e.stopPropagation();
     fetch('/api/user/logOutUser',{
       headers : {
-        'content-yype': 'application/json',
+        'content-type': 'application/json',
         'accept': 'application/json'
       },
       credentials: 'include'
@@ -147,7 +146,7 @@ class MainApp extends Component {
 
       fetch('/api/user/checkSession', {    // 현재의 세션이 유효한지 검사
         headers : {
-          'content-yype': 'application/json',
+          'content-type': 'application/json',
           'accept': 'application/json'
         },
         credentials: 'include'
@@ -162,12 +161,12 @@ class MainApp extends Component {
               info.myCommentVote = data.myCommentVote;
               info.myCommentHistory = data.myCommentHistory;
               info.myWatchHistory = data.myWatchHistory;
-              console.log("getting userInfo is success!");
+              // console.log("getting userInfo is success!");
               Redux.dispatch({type:'setUserInfo', userInfo: info});
               callbackFunc();
             } else {
               // 인증이 실패했으면 index/1 페이지로 리다이렉트 처리한다.
-              console.log("쿠키 인증 실패");
+              // console.log("쿠키 인증 실패");
               Cookies.remove('name');
               window.location.href = '/index/1';
             }
@@ -178,13 +177,13 @@ class MainApp extends Component {
   getMovieInfo(){       // DB에서 영화 정보 object 가져옴
     fetch('/api/movie/getMovieInfo',{
       headers : {
-        'content-yype': 'application/json',
+        'content-type': 'application/json',
         'accept': 'application/json'
       },
       credentials: 'include'
     }).then(res=>res.json())
         .then(data=>{
-          console.log("getting MovieInfo is success!");
+          // console.log("getting MovieInfo is success!");
           Redux.dispatch({type:'setMovieInfo', movieInfo: data});
         });
   }

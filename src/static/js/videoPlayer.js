@@ -50,7 +50,7 @@ class VideoPlayerApp extends Component {
 
   render() {
     const { movieInfo } = this.props;
-    let defaultQuality = Object.values(movieInfo._info._quality)[0];  // 제일 낮은 해상도가 default 퀄리티
+    let defaultQuality = Object.values(movieInfo._info._quality)[Object.values(movieInfo._info._quality).length - 1];  // 제일 높은 해상도에서 한단계 낮은 것이 default 퀄리티
     let trackList = [];
     this.setTrackList(movieInfo, trackList);
     return (
@@ -126,7 +126,6 @@ class VideoPlayerApp extends Component {
   setQuality(player, movieInfo){          // 해상도 조절 메뉴 처리
     var myButton = player.controlBar.addChild("button");
     var myButtonDom = myButton.el();
-
     myButtonDom.title = "Quality";
     myButtonDom.classList.add("vjs-play-control");
     myButtonDom.childNodes[0].className = "vjs-play-qualities";
@@ -139,10 +138,15 @@ class VideoPlayerApp extends Component {
     }
     const qualityInfo = Object.values(movieInfo._info._quality);
     const qualitySet = document.getElementsByClassName("videoQualitySet");
+    let set = Redux.getState().videoMenuSet;
+    set.curQuality = qualityInfo[qualityInfo.length - 2].split(".")[0];          // 기본 해상도 설정
+    Redux.dispatch({type:'setVideoMenu', videoMenuSet: set});
+
     for(let i = 0 ; i < qualityInfo.length ; i++){
       qualitySet[i].onclick = function(){
         let set = Redux.getState().videoMenuSet;
         set.curTime = player.currentTime();
+        set.curQuality = qualityInfo[i].split(".")[0];
         set.isChanged = false;
         Redux.dispatch({type:'setVideoMenu', videoMenuSet: set});
         player.src({src: movieInfo._fileUrl + qualityInfo[i], type : "application/x-mpegURL"});
@@ -150,6 +154,7 @@ class VideoPlayerApp extends Component {
       qualitySet[i].ontouchstart = function(){
         let set = Redux.getState().videoMenuSet;
         set.curTime = player.currentTime();
+        set.curQuality = qualityInfo[i].split(".")[0];
         set.isChanged = false;
         Redux.dispatch({type:'setVideoMenu', videoMenuSet: set});
         player.src({src: movieInfo._fileUrl + qualityInfo[i], type : "application/x-mpegURL"});
@@ -163,6 +168,13 @@ class VideoPlayerApp extends Component {
       set.isQualityOpened = !set.isQualityOpened;
       thisFunc.foldMenu(myButtonDom, set.isQualityOpened);
       Redux.dispatch({type:'setVideoMenu', videoMenuSet:set});
+
+      for(let i = 0 ; i < videoQualityMenu.childNodes.length ; i++){      // 현재 선택한 해상도 표시
+        if(videoQualityMenu.childNodes[i].childNodes[0].innerHTML == set.curQuality)
+          videoQualityMenu.childNodes[i].className = "videoQualitySet curContents";
+        else
+          videoQualityMenu.childNodes[i].className = "videoQualitySet";
+      }
     };
     myButtonDom.onmouseleave = function(){
       let set = Redux.getState().videoMenuSet;
@@ -179,6 +191,13 @@ class VideoPlayerApp extends Component {
       thisFunc.foldMenu(myButtonDom, set.isQualityOpened);
       thisFunc.foldMenu(document.querySelector('[title="Subtitle"]'), set.isSubOpened);
       Redux.dispatch({type:'setVideoMenu', videoMenuSet:set});
+
+      for(let i = 0 ; i < videoQualityMenu.childNodes.length ; i++){      // 현재 선택한 해상도 표시
+        if(videoQualityMenu.childNodes[i].childNodes[0].innerHTML == set.curQuality)
+          videoQualityMenu.childNodes[i].className = "videoQualitySet curContents";
+        else
+          videoQualityMenu.childNodes[i].className = "videoQualitySet";
+      }
     };
   }
 
@@ -202,26 +221,38 @@ class VideoPlayerApp extends Component {
     }
     videoSubMenu.innerHTML += `<li class="subtitleSet"><p>off</p></li>`;
     const subSet = document.getElementsByClassName("subtitleSet");
+    let set = Redux.getState().videoMenuSet;
+    set.curSub = "한국어";          // 기본 자막은 한국어로 설정
+    Redux.dispatch({type:'setVideoMenu', videoMenuSet: set});
+
     for(let i = 0 ; i < subSet.length ; i++){
       subSet[i].onclick = function(){         // 마우스 조작 설정
-        var tracks = player.textTracks();
+        let tracks = player.textTracks();
+        let set = Redux.getState().videoMenuSet;
         for (var j = 0 ; j < tracks.length ; j++) {
-          if (tracks[j].kind == 'subtitles' && tracks[j].language == langList[i]) {
-            tracks[j].mode = 'showing';
-            continue;
-          }
           tracks[j].mode = 'hidden';
+          if(subSet[i].childNodes[0].innerHTML == 'off'){
+            set.curSub = "off";
+          } else if(subSet[i].childNodes[0].innerHTML != 'off' && tracks[j].language == langList[i]) {
+            tracks[j].mode = 'showing';
+            set.curSub = tracks[j].label;
+          }
         }
+        Redux.dispatch({type:'setVideoMenu', videoMenuSet:set});
       }
       subSet[i].ontouchstart = function(){      // 터치 조작 설정
-        var tracks = player.textTracks();
+        var tracks = player.textTracks();        // 모바일은 track 수가 pc에 비해 1개 적음
+        let set = Redux.getState().videoMenuSet;
         for (var j = 0 ; j < tracks.length ; j++) {
-          if (tracks[j].kind == 'subtitles' && tracks[j].language == langList[i]) {
-            tracks[j].mode = 'showing';
-            continue;
-          }
           tracks[j].mode = 'hidden';
+          if(subSet[i].childNodes[0].innerHTML == 'off'){
+            set.curSub = "off";
+          } else if (subSet[i].childNodes[0].innerHTML != 'off' && tracks[j].language == langList[i]) {
+            tracks[j].mode = 'showing';
+            set.curSub = tracks[j].label;
+          }
         }
+        Redux.dispatch({type:'setVideoMenu', videoMenuSet:set});
       }
     }
       // 메뉴 높이 설정
@@ -233,6 +264,13 @@ class VideoPlayerApp extends Component {
       set.isSubOpened = !set.isSubOpened;
       thisFunc.foldMenu(myButtonDom, set.isSubOpened);
       Redux.dispatch({type:'setVideoMenu', videoMenuSet:set});
+
+      for(let i = 0 ; i < videoSubMenu.childNodes.length ; i++){      // 현재 선택한 자막 표시
+        if(videoSubMenu.childNodes[i].childNodes[0].innerHTML == set.curSub)
+          videoSubMenu.childNodes[i].className = "subtitleSet curContents";
+        else
+          videoSubMenu.childNodes[i].className = "subtitleSet";
+      }
     };
     myButtonDom.onmouseleave = function(){
       let set = Redux.getState().videoMenuSet;
@@ -249,6 +287,13 @@ class VideoPlayerApp extends Component {
       thisFunc.foldMenu(document.querySelector('[title="Quality"]'), set.isQualityOpened);
       thisFunc.foldMenu(myButtonDom, set.isSubOpened);
       Redux.dispatch({type:'setVideoMenu', videoMenuSet:set});
+
+      for(let i = 0 ; i < videoSubMenu.childNodes.length ; i++){      // 현재 선택한 자막 표시
+        if(videoSubMenu.childNodes[i].childNodes[0].innerHTML == set.curSub)
+          videoSubMenu.childNodes[i].className = "subtitleSet curContents";
+        else
+          videoSubMenu.childNodes[i].className = "subtitleSet";
+      }
     };
   }
 
@@ -325,7 +370,8 @@ class VideoPlayerApp extends Component {
       }).then(res=>res.json())
           .then(data=>{
             if(data == false){
-              console.log("기록 갱신 실패");
+              ;
+              // console.log("기록 갱신 실패");
             } else{
               Redux.dispatch({type:'setUserInfo', userInfo: data});
             }

@@ -78,10 +78,10 @@ class LoginApp extends Component {
       }).then(res=>res.json())
           .then(data=>{
             if(data == false){
-              console.log("로그인 실패");
+              // console.log("로그인 실패");
               loginMessage.innerHTML = "이메일 또는 비밀번호가 틀렸습니다.";
             } else{
-              console.log("로그인 성공");
+              // console.log("로그인 성공");
               this.saveLoginEmail();
               Cookies.set('name', data.name, {expires: 7});
               Redux.dispatch({type:'setIsLogin', isLogined: true});

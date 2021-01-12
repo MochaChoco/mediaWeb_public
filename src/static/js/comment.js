@@ -232,7 +232,7 @@ class CommentApp extends Component {
             form.style.display = "none";    // 작성 폼 다시 숨김처리
           this.clearForm(form);     // 텍스트 내용 비움
           if(data){
-            console.log("댓글 작성 성공");
+            // console.log("댓글 작성 성공");
             this.setState({movieInfo: data.movieInfo});
             Redux.dispatch({type:'setUserInfo', userInfo: data.userInfo});
             setCommentInfo(data.movieInfo);
@@ -249,7 +249,7 @@ class CommentApp extends Component {
               this.hideFirstButton();
           } else{
             alert("잘못된 로그인 정보입니다.");
-            console.log("잘못된 로그인 정보");
+            // console.log("잘못된 로그인 정보");
           }
         });
   }
@@ -284,12 +284,12 @@ class CommentApp extends Component {
           form.style.display = "none";    // 작성 폼 다시 숨김처리
           this.clearForm(form);       // 텍스트 내용 비움
           if(data){
-            console.log("댓글 수정 성공");
+            // console.log("댓글 수정 성공");
             this.setState({movieInfo: data.movieInfo});
             Redux.dispatch({type:'setUserInfo', userInfo: data.userInfo});
           } else{
             alert("잘못된 로그인 정보입니다.");
-            console.log("잘못된 로그인 정보");
+            // console.log("잘못된 로그인 정보");
           }
         });
   }
@@ -317,13 +317,13 @@ class CommentApp extends Component {
     }).then(res=>res.json())
         .then(data=>{
           if(data){
-            console.log("댓글 삭제 성공");
+            // console.log("댓글 삭제 성공");
             this.setState({movieInfo: data.movieInfo});
             Redux.dispatch({type:'setUserInfo', userInfo: data.userInfo});
           }
           else{
             alert("잘못된 로그인 정보입니다.");
-            console.log("잘못된 로그인 정보");
+            // console.log("잘못된 로그인 정보");
           }
         });
   }
@@ -411,13 +411,13 @@ class CommentApp extends Component {
     }).then(res=>res.json())
         .then(data=>{
           if(data){
-            console.log("댓글 좋아요 갱신 성공");
+            // console.log("댓글 좋아요 갱신 성공");
             Redux.dispatch({type:'setUserInfo', userInfo: data.userInfo});
             this.setState({movieInfo: data.movieInfo});
           }
           else{
             alert("댓글 좋아요 갱신 실패");
-            console.log("잘못된 로그인 정보");
+            // console.log("잘못된 로그인 정보");
           }
         });
   }

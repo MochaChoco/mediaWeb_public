@@ -55,6 +55,11 @@
 
 .videoSubMenu li:hover, .videoQualityMenu li:hover{
   background-color: black;
+  border: 1px solid white;
+}
+
+.curContents{
+  background-color: gray;
 }
 
 .videoSubMenu li p, .videoQualityMenu li p{

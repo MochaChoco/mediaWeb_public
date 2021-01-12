@@ -147,9 +147,9 @@ class MyInfoApp extends Component {
       }).then(res=>res.json())
           .then(data=>{
             if(data == false){
-              console.log("프로필 이미지 업로드 실패");
+              // console.log("프로필 이미지 업로드 실패");
             } else{
-              console.log("프로필 이미지 업로드 성공");
+              // console.log("프로필 이미지 업로드 성공");
               Redux.dispatch({type:'setProfileImage', profileImage: data.profileImage});
               this.fileInput.current.value = '';
               this.changeProfileImage();        // 프로필 사진 갱신

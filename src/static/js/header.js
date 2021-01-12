@@ -26,6 +26,8 @@ class HeaderApp extends Component {
       isPiPMode : false,
       isDirect : false,
       curVideoURL : null,
+      curQuality: null,
+      curSub: null,
       myCommentId: 0,
     }
     Redux.dispatch({type:'setVideoMenu', videoMenuSet:set});
