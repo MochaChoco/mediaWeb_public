@@ -24,7 +24,7 @@
 
 * Nosql DB + Redux를 활용한 영화 정보 + 댓글 정보 저장 구현
   * 댓글 정보가 정형화하기 어려운 형태이므로 nosql DB를 활용함
-  * Redux에 정보를 저장하고, 그것을 재사용하여 서버와 클라이언트 간의 통신 비용 최소화
+  * Redux store에 정보를 저장하고, 그것을 재사용하여 서버와 클라이언트 간의 통신 비용 최소화
   * 현재 시청 중인 영화의 댓글 작성 기능, 영화와 댓글 좋아요 기능, 스크랩 기능 구현
 
 * 반응형 웹 구현
@@ -40,22 +40,22 @@
 
 ## 주요 기능 설명
 ### PiP모드 구현
- ※ video player 구현은 video.js API를 이용하였으나 API에서 지원하는 기본 UI와 최소한의 기능만을 사용했다.
+ ※ video player 구현은 video.js 7.9.5 버전을 이용하였으나 API에서 지원하는 기본 UI와 최소한의 기능만을 사용했다.
 #### 개선점 및 구현 방법
- - 브라우저에서 자체적으로 지원하는 PiP모드에서는 동영상 자막을 불러오지 못하는 단점이 존재했기에, PiP모드를 직접 구현해서 이러한 단점을 개선하고자 했다.
- - 기본 화면과 PiP모드로의 전환은 사용자가 PiP 버튼을 누를 시, 현재 미디어 플레이어의 상태에 따라 NormalToPiP() 함수 또는 PiPToNormal() 함수가 실행되면서 이루어진다.
+ - 브라우저의 기본 미디어 플레이어는 PiP 모드로 실행할 때 외부 자막이 표시되지 않는 문제점이 있었기에, 외부 API를 기반으로 PiP 모드를 직접 구현하여 이런 문제점을 해결하고자 했다. 
+ - 미디어 플레이어의 기본모드와 PiP모드의 전환은 WatchApp 컴포넌트의 NormalToPiP() 또는 PiPToNormal() 함수에 의해 이루어지며, 어느 함수가 실행될지 여부는 Redux store에 저장된 미디어 플레이어 상태값에 의해 결정된다.
  - NormalToPiP() 함수가 호출될 경우 normalWindow div 태그 내의 video 태그 전체가 pipWindow div 태그의 내부로 이동하며 재생 중인 플레이어 또한 pipWindow 내부에 표시되게 된다.
 ![Preview](./readme/Images/NormalAndPiP.png)
  - 반대로 PiPToNormal() 함수가 호출될 경우 위의 동작이 반대로 수행되며 재생 중인 플레이어는 normalWindow 내부에 표시되게 된다.
  - PiP모드 중에 다른 페이지로 이동시에도 해당 영상을 계속 시청할 수 있으며, 원래 페이지로 돌아오면 PiP모드가 해제된다.
-#### PiP모드 시 창의 이동 및 크기 조절 구현
- - PiP모드 진입 시에는 마우스로 창의 이동과 크기 조절을 할 수 있다.
-- 창의 이동은 pipWindow의 style top과 left 값에 변화를 줌으로써 구현했으며 각각의 값은 mouse position의 client값과 offset값의 차로 계산했다.
+#### PiP모드에서 UI의 이동 및 크기 조절 구현
+ - PiP모드에서는 마우스로 UI를 이동시키거나 크기 조절을 할 수 있다.
+ - UI의 이동은 pipWindow의 style top과 left 값에 변화를 줌으로써 구현했으며 각각의 값은 mouse position의 client값과 offset값의 차로 계산했다.
 ![Preview](./readme/Images/PiPPosition.png)
- - 창의 크기 조절은 pipWindow의 style height과 width에 현재의 mouse position과 이전 mouse position의 차를 더해주었다.
- - 하지만 창의 크기만 조절하면 pipWindow의 화면 상 절대 위치가 변동돼서 사용자에게 어색하게 보이는 문제점이 있었다.
+ - UI의 크기 조절은 pipWindow의 style height과 width에 현재의 mouse position과 이전 mouse position의 차를 더해주었다.
+ - 하지만 UI의 크기만 조절하면 pipWindow의 화면 상 절대위치가 변동돼서 원하는 대로 크기가 조절되지 않는 문제점이 있었다.
 ![Preview](./readme/Images/PiPSize.png)
- - 이를 해결하기 위해 pipWindodw style의 top과 left 값에 pipWindow의 client top(width)값에 현재의 mouse position과 이전 mouse position의 차를 더해주어, 창의 크기가 조절되면 top과 left 값도 같이 변하도록 설정했다.
+ - 이를 해결하기 위해 pipWindodw style의 top과 left 값에 pipWindow의 client top(width)값에 현재의 mouse position과 이전 mouse position의 차를 더해주어, UI의 크기가 조절되면 top과 left 값도 같이 변하도록 설정했다.
 
 ### 동영상 해상도 및 자막 전환 기능 구현
  - 영상의 경우 m3u8 파일과 ts파일을, 자막의 경우 vtt 파일을 사용했다.
@@ -70,10 +70,10 @@
  - 로그인 정보는 클라이언트의 Redux store에 저장되며, 클라이언트가 서버와 통신할 때마다 클라이언트의 Redux store에 저장된 로그인 정보와 DB에 저장된 세션 정보가 일치하는지 확인한다.
  - 사용자가 로그아웃 시 DB에 저장되어 있던 세션 정보와 Redux store에 저장된 로그인 정보를 파기한다.
 ![Preview](./readme/Images/logout.png)
- - 로그인 여부에 따라 접근할 수 있는 페이지가 정해져 있는데, 접근 권한이 없는 페이지를 접근 시 사용자는 index 페이지로 리다이렉트된다.
+ - 각각의 페이지에 접근하기 전에 AuthCheckRoute() 함수가 실행되어 접근 권한을 확인하는데, 접근 권한이 없을 경우 index 페이지로 redirect된다.
 
 ### 프로필 사진 업로드 및 수정 기능 구현
- - 사용자는 본인이 원하는 프로필 사진을 업로드 할 수 있으며, 40kb 이하이고 1:1 비율에 근접한 사진만 사용할 수 있다.
+ - 사용자는 본인이 원하는 프로필 사진을 업로드 할 수 있으며, 40kb 이하이고 1:1 비율에 근접한 사진(약 5% 내외까지 허용)만 사용할 수 있다.
  - 클라이언트에서 검증이 완료된 사진은 form data 형태로 서버에 보내지며 AWS S3 API를 통해 S3에 업로드 된다.
 ![Preview](./readme/Images/uploadProfileImage.png)
  - 사진이 업로드 되면 프로필 사진이 즉각적으로 변경되며, 변경 이전에 작성했던 댓글의 프로필 사진에는 이러한 변경점이 반영되지 않는다.
@@ -92,7 +92,7 @@
  - 클라이언트는 최초 접속 시 서버와 통신하여 object 형식으로 된 영화 정보를 받아 클라이언트 내의 Redux store에 저장한다.
  - 이후 해당 정보가 필요하면 다시 서버와 통신하지 않고 후 필요할 때마다 Redux store에 저장된 값을 사용한다.
 ![Preview](./readme/Images/getMovieInfo.png)
- - 만약 갱신된 정보가 필요할 때는 다시 서버와 통신하여 최신 데이터를 받은 후 Redux store에 해당 정보를 갱신한다.
+ - 만약 갱신된 정보가 필요할 때는 클라이언트는 다시 서버와 통신하여 최신 정보를 받은 후 Redux store에 해당 정보를 갱신한다.
 
 ### 댓글 기능 구현
 #### 댓글의 구조 및 rendering 방식
@@ -128,6 +128,6 @@
 
 ### AWS Service와의 연동
  - 웹 페이지를 구현할때 사용된 호스팅용 서버, 파일 서버, 도메인, 인증서 발급 서비스는 AWS에서 제공하는 것을 사용했다.
- - 호스팅용 서버는 리눅스 기반의 AWS E2를 사용했으며, 주소창에서 http 주소로 접근하거나 서브 도메인을 생략할 시 EC2에서 제공하는 로드 밸런서를 통하여 올바른 주소로 리다이렉트 하도록 처리했다.
+ - 호스팅용 서버는 리눅스 기반의 AWS E2를 사용했으며, 주소창에서 http 주소로 접근하거나 서브 도메인을 생략할 시 EC2에서 제공하는 로드 밸런서를 통하여 올바른 주소로 redirect 하도록 처리했다.
  - 파일 서버는 AWS S3를 사용했으며, Cloudfront를 이용하여 사용자가 세계 어느 곳에서 접속하더라도 일정한 loading 시간을 보장받도록 설정했다.
  - 도메인과 인증서는 AWS route 53과 AWS Certification에서 발급받아 사용했으며 이를 통해 https 프로토콜을 구현했다.
